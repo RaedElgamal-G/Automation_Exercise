@@ -30,7 +30,10 @@ jobs:
           mvn --version
 
       - name: Execute Tests
-        run: mvn -Dtest="${{ github.event.inputs.testsPath }}" test
+        run:  |
+          export DISPLAY=:99  # Required for headless Chrome
+          Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
+          mvn -Dtest="${{ github.event.inputs.testsPath }}" test
 
       - name: Publish Report
         continue-on-error: true

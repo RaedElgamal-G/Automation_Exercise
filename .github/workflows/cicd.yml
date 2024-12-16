@@ -8,7 +8,7 @@ on:
         default: ''
 
 jobs:
-  Registration_E2E_Test:
+  Registration_E2E_Test_Ubunto:
     runs-on: ubuntu-latest  # Specify Ubuntu as the runner
     permissions:
       checks: write
@@ -29,15 +29,44 @@ jobs:
           sudo apt-get install -y maven
           mvn --version
 
-      - name: Setup xvfb for screen 0
-        run: Xvfb :1 -screen 0 1600x1200x24 &
+      - name: Execute Tests
+        run:  |
+          export DISPLAY=:99  # Required for headless Chrome
+          Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
+          mvn -Dtest="${{ github.event.inputs.testsPath }}" test
+
+      - name: Publish Report
+        continue-on-error: true
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Tests Report
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
+
+  Registration_E2E_Test_Windows:
+    runs-on: windows-latest  # Specify Ubuntu as the runner
+    permissions:
+      checks: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
 
       - name: Execute Tests
         run: mvn -Dtest="${{ github.event.inputs.testsPath }}" test
-        env:
-          DISPLAY: :1
-      - name: Tear down xvfb
-        run: killall Xvfb
+
 
       - name: Publish Report
         continue-on-error: true

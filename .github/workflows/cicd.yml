@@ -1,4 +1,4 @@
-name: Registration E2E Test
+name: Registration_E2E_Test
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
         default: ''
 
 jobs:
-  E2E_Test:
+  Registration_E2E_Test:
     runs-on: windows-latest
     permissions:
       checks: write

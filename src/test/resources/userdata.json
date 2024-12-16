@@ -15,6 +15,23 @@
     "city": "Mansoura",
     "zipCodeValue": "126745",
     "mobileNumberValue": "01122334457"
+  },
+  "user2": {
+    "email": "mohamed90909@gmail.com",
+    "password": "mohamed123",
+    "day": "20",
+    "month": "May",
+    "year": "1999",
+    "name": "mohamed",
+    "lastName": "ali",
+    "company": "Giza Systems",
+    "address1": "caller st,Mansoura,Egypt",
+    "address2": "german street,Mansoura,Egypt",
+    "country": "India",
+    "state": "Daqahlia",
+    "city": "Mansoura",
+    "zipCodeValue": "242467",
+    "mobileNumberValue": "01122334787"
   }
 
 }

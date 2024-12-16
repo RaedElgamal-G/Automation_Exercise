@@ -9,7 +9,7 @@ on:
 
 jobs:
   Registration_E2E_Test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Specify Ubuntu as the runner
     permissions:
       checks: write
 
@@ -20,13 +20,14 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+          distribution: 'zulu'
           java-version: '21'
 
-      - name: Setup Maven
-        uses: stCarolas/setup-maven@v5
-        with:
-          maven-version: 3.9.9
+      - name: Install Maven
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y maven
+          mvn --version
 
       - name: Execute Tests
         run: mvn -Dtest="${{ github.event.inputs.testsPath }}" test

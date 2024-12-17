@@ -14,7 +14,7 @@ on:
 
    schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '32 14 * * *'
+    - cron: '33 14 * * *'
 
 jobs:
   Registration_E2E_First_Test-ubuntu-chrome:

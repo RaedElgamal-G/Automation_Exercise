@@ -51,6 +51,11 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-ubuntu-test
+          path: target/allure-maven-plugin/index.html
 
   Registration_E2E_Second_Test-windows-edge:
     runs-on:  windows-latest
@@ -83,3 +88,9 @@ jobs:
           name: Tests Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
+
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-windows-test
+          path: target/allure-maven-plugin/index.html

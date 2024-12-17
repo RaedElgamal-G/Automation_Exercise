@@ -3,7 +3,7 @@ name: Registration_E2E_Test
 on:
   workflow_dispatch:
     inputs:
-      OS:
+      OSRun1:
         required: true
         default: 'windows'
         description: Please select the OS to run test1
@@ -11,7 +11,23 @@ on:
         options:
           - windows
           - Ubunto
-      Browser:
+      BrowserRun1:
+        required: true
+        default: 'windows'
+        description: Please select the browser to run test1
+        type: choice
+        options:
+          - chrome
+          - edge
+      OSRun2:
+        required: true
+        default: 'windows'
+        description: Please select the OS to run test1
+        type: choice
+        options:
+          - Ubunto
+          - windows
+      BrowserRun2:
         required: true
         default: 'windows'
         description: Please select the browser to run test1
@@ -20,46 +36,9 @@ on:
           - chrome
           - edge
 
-
 jobs:
   Registration_E2E_Test_Ubunto:
-    runs-on: ubuntu-latest  # Specify Ubuntu as the runner
-    permissions:
-      checks: write
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '21'
-
-      - name: Install Maven
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y maven
-          mvn --version
-
-      - name: Execute Tests
-        run:  |
-          export DISPLAY=:99  # Required for headless Chrome
-          Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
-          mvn -Dtest="${{ github.event.inputs.testsPath }}" test
-
-      - name: Publish Report
-        continue-on-error: true
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          name: Tests Report
-          path: 'target/surefire-reports/TEST-*.xml'
-          reporter: java-junit
-
-  Registration_E2E_Test_Windows:
-    runs-on: windows-latest  # Specify Ubuntu as the runner
+    runs-on: ${{ github.event.inputs.OSRun1 }}-latest
     permissions:
       checks: write
 
@@ -79,8 +58,42 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests
-        run: mvn -Dtest="${{ github.event.inputs.testsPath }}" test
+        run:  |
+          export DISPLAY=:99  # Required for headless Chrome
+          Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
+          mvn -DBrowserName="${{ github.event.inputs.BrowserRun1 }}" -DHeadLessBrowsing="${{ github.event.inputs.testsPath_Headless || true }}" -Dtest="${{ github.event.inputs.testsPath }}" test
 
+      - name: Publish Report
+        continue-on-error: true
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Tests Report
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
+
+  Registration_E2E_Test_Windows:
+    runs-on: ${{ github.event.inputs.OSRun2 }}-latest
+    permissions:
+      checks: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
+
+      - name: Execute Tests
+        run: mvn -DBrowserName="${{ github.event.inputs.BrowserRun2 }}" -DHeadLessBrowsing="false" -Dtest="${{ github.event.inputs.testsPath }}" test
 
       - name: Publish Report
         continue-on-error: true

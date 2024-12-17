@@ -24,10 +24,10 @@ public class DriverFactory {
         }
         if (browserName.equalsIgnoreCase("chrome")) {
             System.out.println("initializing Chrome Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(cOptions);
             System.out.println("Successfully initialized the Chrome Browser");
         } else if (browserName.equalsIgnoreCase("edge")) {
-            driver = new EdgeDriver();
+            driver = new EdgeDriver(eOptions);
         }
         if (maximize) {
             driver.manage().window().maximize();

@@ -1,7 +1,6 @@
 name: Registration_E2E_Test
 
 on:
-  push:
   pull_request:
     branches:
       - main

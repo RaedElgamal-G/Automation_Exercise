@@ -8,7 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 public class DriverFactory {
     static WebDriver driver;
 
-    public static WebDriver initiateDriver(String browserName,Boolean headless, boolean maximize) {
+    public static WebDriver initiateDriver(String browserName,boolean headless, boolean maximize) {
 
         if (browserName.equalsIgnoreCase("chrome")) {
             System.out.println("initializing Chrome Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));

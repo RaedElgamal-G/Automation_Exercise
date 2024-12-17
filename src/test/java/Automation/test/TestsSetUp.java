@@ -2,7 +2,6 @@ package Automation.test;
 
 import org.example.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -25,7 +24,7 @@ public class TestsSetUp {
 
     @BeforeMethod
     public void before_method_1(){
-        driver=DriverFactory.initiateDriver(System.getProperty("browserName"),true);
+        driver=DriverFactory.initiateDriver(System.getProperty("browserName"),Boolean.parseBoolean(System.getProperty("headless")),true);
         homepage = new HomePage(driver);
         mainmenuepage= new MainMenuPage(driver);
         signuploginpage = new SignUpLogInPage(driver);

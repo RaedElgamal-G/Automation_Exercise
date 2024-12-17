@@ -9,7 +9,7 @@ on:
 
    schedule:
      # * is a special character in YAML so you have to quote this string
-     - cron: '40 14 * * *'
+     - cron: '55 * * * *'
 
    pull_request:
      branches:
@@ -50,6 +50,7 @@ jobs:
           name: Tests Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
+
 
   Registration_E2E_Second_Test-windows-edge:
     runs-on:  windows-latest

@@ -1,11 +1,7 @@
 name: Registration_E2E_Test
 
 on:
-  pull_request:
-    branches:
-      - main
-
-  workflow_dispatch:
+   workflow_dispatch:
     inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
@@ -43,6 +39,9 @@ on:
           - chrome
           - edge
 
+   pull_request:
+     branches:
+       - main
 
 jobs:
   Registration_E2E_First_Test:

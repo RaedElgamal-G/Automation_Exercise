@@ -11,8 +11,13 @@ on:
      branches:
        - main
 
+
+   schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '32 14 * * *'
+
 jobs:
-  Registration_E2E_First_Test:
+  Registration_E2E_First_Test-ubuntu-chrome:
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -44,7 +49,7 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
-  Registration_E2E_Second_Test:
+  Registration_E2E_Second_Test-windows-edge:
     runs-on:  windows-latest
     permissions:
       checks: write

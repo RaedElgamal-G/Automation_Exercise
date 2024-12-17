@@ -38,12 +38,11 @@ on:
         options:
           - chrome
           - edge
-
+  push:
   pull_request:
-    types:
-      - opened
     branches:
-      - 'main/**'
+      - main
+
 jobs:
   Registration_E2E_First_Test:
     runs-on: ${{ github.event.inputs.OSRun1 }}-latest

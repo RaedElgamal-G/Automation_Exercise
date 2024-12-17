@@ -8,7 +8,7 @@ on:
         default: 'Automation.test.RegistrationTests'
       OSRun1:
         required: true
-        default: 'windows'
+        default: 'Ubunto'
         description: Please select the OS to run test1
         type: choice
         options:
@@ -16,7 +16,7 @@ on:
           - Ubunto
       BrowserRun1:
         required: true
-        default: 'windows'
+        default: 'chrome'
         description: Please select the browser to run test1
         type: choice
         options:
@@ -32,7 +32,7 @@ on:
           - windows
       BrowserRun2:
         required: true
-        default: 'windows'
+        default: 'edge'
         description: Please select the browser to run test1
         type: choice
         options:

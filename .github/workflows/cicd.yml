@@ -3,9 +3,23 @@ name: Registration_E2E_Test
 on:
   workflow_dispatch:
     inputs:
-      testsPath:
-        description: 'Path to Tests to be Executed'
-        default: ''
+      OS:
+        required: true
+        default: 'windows'
+        description: Please select the OS to run test1
+        type: choice
+        options:
+          - windows
+          - Ubunto
+      Browser:
+        required: true
+        default: 'windows'
+        description: Please select the browser to run test1
+        type: choice
+        options:
+          - chrome
+          - edge
+
 
 jobs:
   Registration_E2E_Test_Ubunto:

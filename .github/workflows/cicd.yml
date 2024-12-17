@@ -7,14 +7,16 @@ on:
         description: 'Path to Tests to be Executed'
         default: 'Automation.test.RegistrationTests'
 
+   schedule:
+     # * is a special character in YAML so you have to quote this string
+     - cron: '40 14 * * *'
+
    pull_request:
      branches:
        - main
 
 
-   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron: '33 14 * * *'
+
 
 jobs:
   Registration_E2E_First_Test-ubuntu-chrome:

@@ -15,8 +15,12 @@ public class DriverFactory {
     public static WebDriver initiateDriver(String browserName,boolean headless, boolean maximize) {
         if (headless && browserName.equalsIgnoreCase("chrome")){
             cOptions.addArguments("--headless");
+            cOptions.addArguments("--disable-gpu");
+            cOptions.addArguments("--no-sandbox");
         } else if (headless && browserName.equalsIgnoreCase("edge")) {
             eOptions.addArguments("--headless");
+            eOptions.addArguments("--disable-gpu");
+            eOptions.addArguments("--no-sandbox");
         }
         if (browserName.equalsIgnoreCase("chrome")) {
             System.out.println("initializing Chrome Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));

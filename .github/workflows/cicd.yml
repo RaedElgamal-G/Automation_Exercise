@@ -51,6 +51,9 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
+      - name: Generate Allure report
+        run: mvn allure:report
+
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -90,7 +93,7 @@ jobs:
           reporter: java-junit
 
       - name: Generate Allure report
-        run: mvn allure:serve
+        run: mvn allure:report
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3

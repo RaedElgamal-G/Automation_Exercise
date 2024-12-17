@@ -61,10 +61,7 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests
-        run:  |
-          export DISPLAY=:99  # Required for headless Chrome
-          Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
-          mvn -DBrowserName="${{ github.event.inputs.BrowserRun1 }}" -Dtest="${{ github.event.inputs.testsPath }}" test
+        run: mvn -DBrowserName="${{ github.event.inputs.BrowserRun1 }}" -Dtest="${{ github.event.inputs.testsPath }}" test
 
       - name: Publish Report
         continue-on-error: true

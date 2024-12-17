@@ -1,6 +1,11 @@
 name: Registration_E2E_Test
 
 on:
+  push:
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
     inputs:
       testsPath:
@@ -39,11 +44,7 @@ on:
           - chrome
           - edge
 
-  pull_request:
-    types:
-      - opened
-    branches:
-      - 'main/**'
+
 jobs:
   Registration_E2E_First_Test:
     runs-on: ${{ github.event.inputs.OSRun1 }}-latest

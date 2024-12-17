@@ -8,12 +8,12 @@ on:
         default: 'Automation.test.RegistrationTests'
       OSRun1:
         required: true
-        default: 'Ubunto'
+        default: 'Ubuntu'
         description: Please select the OS to run test1
         type: choice
         options:
           - windows
-          - Ubunto
+          - Ubuntu
       BrowserRun1:
         required: true
         default: 'chrome'
@@ -28,7 +28,7 @@ on:
         description: Please select the OS to run test1
         type: choice
         options:
-          - Ubunto
+          - Ubuntu
           - windows
       BrowserRun2:
         required: true
@@ -40,7 +40,7 @@ on:
           - edge
 
 jobs:
-  Registration_E2E_Test_Ubunto:
+  Registration_E2E_First_Test:
     runs-on: ${{ github.event.inputs.OSRun1 }}-latest
     permissions:
       checks: write
@@ -64,7 +64,7 @@ jobs:
         run:  |
           export DISPLAY=:99  # Required for headless Chrome
           Xvfb :99 -screen 0 1920x1080x24 &  # Start virtual display
-          mvn -DBrowserName="${{ github.event.inputs.BrowserRun1 }}" -DHeadLessBrowsing="${{ github.event.inputs.testsPath_Headless || true }}" -Dtest="${{ github.event.inputs.testsPath }}" test
+          mvn -DBrowserName="${{ github.event.inputs.BrowserRun1 }}" -Dtest="${{ github.event.inputs.testsPath }}" test
 
       - name: Publish Report
         continue-on-error: true
@@ -75,7 +75,7 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
 
-  Registration_E2E_Test_Windows:
+  Registration_E2E_Second_Test:
     runs-on: ${{ github.event.inputs.OSRun2 }}-latest
     permissions:
       checks: write

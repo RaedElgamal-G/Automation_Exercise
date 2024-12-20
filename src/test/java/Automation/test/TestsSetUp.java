@@ -6,7 +6,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utilitiles.DriverFactory;
-import utilitiles.JsonFileManager1;
 import utilitiles.PropertiesReader;
 
 public class TestsSetUp {
@@ -17,10 +16,6 @@ public class TestsSetUp {
     protected RegistrationPage registeraionpage;
     protected AccountCreatedPage accountcreatedpage;
     protected DeleteAccountPage deleteaccountpage;
-    JsonFileManager1 dataRepo = new JsonFileManager1("src/test/resources/userdata.json");
-
-
-
 
     @BeforeMethod
     public void before_method_1(){

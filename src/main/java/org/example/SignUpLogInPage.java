@@ -18,16 +18,35 @@ public class SignUpLogInPage {
     private By emailField = new By.ByXPath("//input[@data-qa='signup-email']");
     private By signUpButton = new By.ByXPath("//button[@data-qa='signup-button']");
 
+    private By logInToYourAccountTitle = new By.ByCssSelector("div[class='login-form'] h2");
+    private By loginEmail = new By.ByCssSelector("input[data-qa='login-email']");
+    private By loginPassword = new By.ByCssSelector("input[data-qa='login-password']");
+    private By loginButton = new By.ByCssSelector("button[data-qa='login-button']");
+
     //Assertions
-    @Step("Check that Signup/Signin page Title Is Displayed")
-    public void assertSignUpSignInpageIsOpedned(){
+    @Step("Check that New User SignUp Title Is Displayed")
+    public void assertSignUpSectionIsDisplayed(){
         ElementActions.assertTrueOnElement(driver,newUserSignUpTitle,"New User Signup!");
     }
+    @Step("Check that Login to your account Is Displayed")
+    public void assertLogInSectionIsDisplayed(){
+        ElementActions.assertTrueOnElement(driver,logInToYourAccountTitle,"Login to your account");
+    }
+
     //Actions
     @Step("Signup With Name And Email")
     public void signUpWithNameAndEmail(String name,String email){
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(emailField).sendKeys(email);
+    }
+    @Step("Login With valid email And password")
+    public void logIn(String email,String password){
+        driver.findElement(loginEmail).sendKeys(email);
+        driver.findElement(loginPassword).sendKeys(password);
+    }
+    @Step("Click On Login Button")
+    public void clickOnLoginButton(){
+        ElementActions.click(driver,loginButton);
     }
 
     public void clickOnSignUpButton(){

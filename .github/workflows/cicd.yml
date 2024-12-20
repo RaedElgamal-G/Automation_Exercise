@@ -16,7 +16,7 @@ on:
        - main
 
 jobs:
-  Registration_E2E_First_Test-ubuntu-chrome:
+  ubuntu-chrome-run:
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -57,7 +57,7 @@ jobs:
           name: allure-report-ubuntu-test
           path: target/site/allure-maven-plugin/index.html
 
-  Registration_E2E_Second_Test-windows-edge:
+  windows-edge-run:
     runs-on:  windows-latest
     permissions:
       checks: write

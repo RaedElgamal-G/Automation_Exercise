@@ -4,11 +4,15 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
+import utilitiles.JsonFileManager1;
 
 
 public class RegistrationTests extends TestsSetUp{
 
-    //data from json file
+    //reading json file (userdata)
+    JsonFileManager1 dataRepo = new JsonFileManager1("src/test/resources/userdata.json");
+
+    //data from json file (userdata)
     String password = dataRepo.getTestData("$.user1.password");
     String day= dataRepo.getTestData("$.user1.day");
     String month = dataRepo.getTestData("$.user1.month");
@@ -26,14 +30,14 @@ public class RegistrationTests extends TestsSetUp{
     String mobileNumberValue=dataRepo.getTestData("$.user1.mobileNumberValue");
 
     @Test(description = "Register to Automation Exercise website")
-    @Description("Register to Automation Exercise website")
-    @Severity(SeverityLevel.CRITICAL)
-    public void test_1_Exercise() {
+        @Description("Register to Automation Exercise website")
+        @Severity(SeverityLevel.CRITICAL)
+    public void registerNewUser() {
 
         homepage.navigateToHomePage();
         homepage.assertOnHomePageTitle();
         mainmenuepage.clickOnSignUpSignInLink();
-        signuploginpage.assertSignUpSignInpageIsOpedned();
+        signuploginpage.assertSignUpSectionIsDisplayed();
         signuploginpage.signUpWithNameAndEmail(name,email);
         signuploginpage.clickOnSignUpButton();
         registeraionpage.assertAccountInformationPageIsOpened();

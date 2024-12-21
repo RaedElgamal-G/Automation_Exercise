@@ -1,4 +1,4 @@
-name: Registration_E2E_Test
+name: Automation_Exercise_E2E_Tests
 
 on:
    workflow_dispatch:

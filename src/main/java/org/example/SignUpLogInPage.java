@@ -22,7 +22,8 @@ public class SignUpLogInPage {
     private By loginEmail = new By.ByCssSelector("input[data-qa='login-email']");
     private By loginPassword = new By.ByCssSelector("input[data-qa='login-password']");
     private By loginButton = new By.ByCssSelector("button[data-qa='login-button']");
-    private By errorMessage = new By.ByXPath("//form[@action='/login']/p");
+    private By invalidCredentialsErrorMsg = new By.ByXPath("//form[@action='/login']/p");
+    private By existingEmailErrorMsg = new By.ByXPath("//input[@value='signup']/following-sibling::p");
 
     //Assertions
     @Step("Check that New User SignUp Title Is Displayed")
@@ -35,9 +36,14 @@ public class SignUpLogInPage {
         ElementActions.assertTrueOnElement(driver,logInToYourAccountTitle,"Login to your account");
     }
 
-    @Step("Assert On Displayed Error Message")
-    public void assertOnErrorMessageDisplayed(){
-        ElementActions.assertEqualOnElement(driver,errorMessage,"Your email or password is incorrect!");
+    @Step("Assert On Login with invalid Credentials Error Message")
+    public void assertOnLoginErrorMessage(){
+        ElementActions.assertEqualOnElement(driver, invalidCredentialsErrorMsg,"Your email or password is incorrect!");
+    }
+
+    @Step("Assert On Sign Up With Existing Email Error Message")
+    public void assertOnExistingEmailErrorMessage(){
+        ElementActions.assertEqualOnElement(driver, existingEmailErrorMsg,"Email Address already exist!");
     }
 
     //Actions

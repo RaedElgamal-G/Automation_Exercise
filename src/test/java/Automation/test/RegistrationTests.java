@@ -9,28 +9,32 @@ import utilitiles.JsonFileManager1;
 
 public class RegistrationTests extends TestsSetUp{
 
-    //reading json file (userdata)
-    JsonFileManager1 dataRepo = new JsonFileManager1("src/test/resources/userdata.json");
+    //reading json file (userNewdata)
+    JsonFileManager1 newData = new JsonFileManager1("src/test/resources/userNewdata.json");
+    JsonFileManager1 registeredData = new JsonFileManager1("src/test/resources/logInData.json");
 
-    //data from json file (userdata)
-    String password = dataRepo.getTestData("$.user1.password");
-    String day= dataRepo.getTestData("$.user1.day");
-    String month = dataRepo.getTestData("$.user1.month");
-    String year = dataRepo.getTestData("$.user1.year");
-    String name = dataRepo.getTestData("$.user1.name");
-    String lastName = dataRepo.getTestData("$.user1.lastName");
-    String email = dataRepo.getTestData("$.user1.email");
-    String address1 = dataRepo.getTestData("$.user1.address1");
-    String address2 = dataRepo.getTestData("$.user1.address2");
-    String country= dataRepo.getTestData("$.user1.country");
-    String company = dataRepo.getTestData("$.user1.company");
-    String state = dataRepo.getTestData("$.user1.state");
-    String city = dataRepo.getTestData("$.user1.city");
-    String zipCodeValue =dataRepo.getTestData("$.user1.zipCodeValue");
-    String mobileNumberValue=dataRepo.getTestData("$.user1.mobileNumberValue");
+    //data from json file (userNewdata)
+    String password = newData.getTestData("$.user1.password");
+    String day= newData.getTestData("$.user1.day");
+    String month = newData.getTestData("$.user1.month");
+    String year = newData.getTestData("$.user1.year");
+    String name = newData.getTestData("$.user1.name");
+    String lastName = newData.getTestData("$.user1.lastName");
+    String email = newData.getTestData("$.user1.email");
+    String address1 = newData.getTestData("$.user1.address1");
+    String address2 = newData.getTestData("$.user1.address2");
+    String country= newData.getTestData("$.user1.country");
+    String company = newData.getTestData("$.user1.company");
+    String state = newData.getTestData("$.user1.state");
+    String city = newData.getTestData("$.user1.city");
+    String zipCodeValue = newData.getTestData("$.user1.zipCodeValue");
+    String mobileNumberValue= newData.getTestData("$.user1.mobileNumberValue");
 
-    @Test(description = "Register to Automation Exercise website")
-        @Description("Register to Automation Exercise website")
+    //data from json file (logInData)
+    String existingEmail = registeredData.getTestData("$.registeredUser.email");
+
+    @Test(description = "Register to Automation Exercise Website With New User")
+        @Description("Register to Automation Exercise Website With New User")
         @Severity(SeverityLevel.CRITICAL)
     public void registerNewUser() {
 
@@ -50,6 +54,23 @@ public class RegistrationTests extends TestsSetUp{
         mainmenuepage.deleteAccount();
         deleteaccountpage.assertOnAccountDeletion();
         deleteaccountpage.clickOnDeletionContinueButton();
+
+    }
+
+    @Test(description = "Register to Automation Exercise Website With Existing Email")
+        @Description("Register to Automation Exercise Website With Existing Email")
+        @Severity(SeverityLevel.CRITICAL)
+    public void registerUserWithExistingEmail() {
+
+        homepage.navigateToHomePage();
+        homepage.assertOnHomePageTitle();
+        mainmenuepage.clickOnSignUpSignInLink();
+        signuploginpage.assertSignUpSectionIsDisplayed();
+        signuploginpage.signUpWithNameAndEmail(name,existingEmail);
+        signuploginpage.clickOnSignUpButton();
+        signuploginpage.assertOnExistingEmailErrorMessage();
+
+
 
     }
 }

@@ -1,12 +1,12 @@
 {
-  "user1": {
+  "validuser": {
     "fitstName": "3lawy",
     "email": "ra2oda@gmail.com",
     "password": "ra2oda500"
   },
-  "user2": {
-    "fitstName": "othman",
-    "email": "othmanaa@gmail.com",
-    "password": "othman600"
+  "invaliduser": {
+    "fitstName": "karim",
+    "email": "kemoooo@gmail.com",
+    "password": "kemo012011"
   }
 }

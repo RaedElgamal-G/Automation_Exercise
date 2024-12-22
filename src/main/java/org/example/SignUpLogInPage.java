@@ -22,15 +22,22 @@ public class SignUpLogInPage {
     private By loginEmail = new By.ByCssSelector("input[data-qa='login-email']");
     private By loginPassword = new By.ByCssSelector("input[data-qa='login-password']");
     private By loginButton = new By.ByCssSelector("button[data-qa='login-button']");
+    private By errorMessage = new By.ByXPath("//form[@action='/login']/p");
 
     //Assertions
     @Step("Check that New User SignUp Title Is Displayed")
     public void assertSignUpSectionIsDisplayed(){
         ElementActions.assertTrueOnElement(driver,newUserSignUpTitle,"New User Signup!");
     }
+
     @Step("Check that Login to your account Is Displayed")
     public void assertLogInSectionIsDisplayed(){
         ElementActions.assertTrueOnElement(driver,logInToYourAccountTitle,"Login to your account");
+    }
+
+    @Step("Assert On Displayed Error Message")
+    public void assertOnErrorMessageDisplayed(){
+        ElementActions.assertEqualOnElement(driver,errorMessage,"Your email or password is incorrect!");
     }
 
     //Actions
@@ -39,19 +46,20 @@ public class SignUpLogInPage {
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(emailField).sendKeys(email);
     }
+
     @Step("Login With valid email And password")
     public void logIn(String email,String password){
         driver.findElement(loginEmail).sendKeys(email);
         driver.findElement(loginPassword).sendKeys(password);
     }
-    @Step("Click On Login Button")
-    public void clickOnLoginButton(){
-        ElementActions.click(driver,loginButton);
-    }
+
 
     public void clickOnSignUpButton(){
         ElementActions.click(driver,signUpButton);
     }
 
+    public void clickOnLoginButton(){
+        ElementActions.click(driver,loginButton);
+    }
 
 }

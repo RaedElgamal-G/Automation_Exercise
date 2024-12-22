@@ -1,0 +1,37 @@
+{
+  "user1": {
+    "email": "raed90909@gmail.com",
+    "password": "raed12raed12",
+    "day": "20",
+    "month": "May",
+    "year": "1999",
+    "name": "raed",
+    "lastName": "elgamal",
+    "company": "Giza Systems",
+    "address1": "aboutaleb street,Mansoura,Egypt",
+    "address2": "gazar street,Mansoura,Egypt",
+    "country": "India",
+    "state": "Daqahlia",
+    "city": "Mansoura",
+    "zipCodeValue": "126745",
+    "mobileNumberValue": "01122334457"
+  },
+  "user2": {
+    "email": "mohamed90909@gmail.com",
+    "password": "mohamed123",
+    "day": "20",
+    "month": "May",
+    "year": "1999",
+    "name": "mohamed",
+    "lastName": "ali",
+    "company": "Giza Systems",
+    "address1": "caller st,Mansoura,Egypt",
+    "address2": "german street,Mansoura,Egypt",
+    "country": "India",
+    "state": "Daqahlia",
+    "city": "Mansoura",
+    "zipCodeValue": "242468",
+    "mobileNumberValue": "01155334787"
+  }
+
+}

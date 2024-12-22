@@ -12,13 +12,13 @@ public class LogInTests extends TestsSetUp {
     JsonFileManager1 dataRepo = new JsonFileManager1("src/test/resources/logInData.json");
 
     //valid user data from json file (logInData)
-    String validName = dataRepo.getTestData("$.validuser.fitstName");
-    String validEmail = dataRepo.getTestData("$.validuser.email");
-    String validPassword = dataRepo.getTestData("$.validuser.password");
+    String validName = dataRepo.getTestData("$.registeredUser.fitstName");
+    String validEmail = dataRepo.getTestData("$.registeredUser.email");
+    String validPassword = dataRepo.getTestData("$.registeredUser.password");
 
     //Invalid user data from json file (logInData)
-    String invalidEmail = dataRepo.getTestData("$.invaliduser.email");
-    String invalidPassword = dataRepo.getTestData("$.invaliduser.password");
+    String invalidEmail = dataRepo.getTestData("$.unregisteredUser.email");
+    String invalidPassword = dataRepo.getTestData("$.unregisteredUser.password");
 
     @Test(description = "Login with valid email and password")
     @Description("Login with valid email and password")
@@ -44,7 +44,7 @@ public class LogInTests extends TestsSetUp {
         signuploginpage.assertLogInSectionIsDisplayed();
         signuploginpage.logIn(invalidEmail, invalidPassword);
         signuploginpage.clickOnLoginButton();
-        signuploginpage.assertOnErrorMessageDisplayed();
+        signuploginpage.assertOnLoginErrorMessage();
 
     }
 

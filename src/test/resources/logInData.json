@@ -1,10 +1,10 @@
 {
-  "validuser": {
+  "registeredUser": {
     "fitstName": "3lawy",
     "email": "ra2oda@gmail.com",
     "password": "ra2oda500"
   },
-  "invaliduser": {
+  "unregisteredUser": {
     "fitstName": "karim",
     "email": "kemoooo@gmail.com",
     "password": "kemo012011"

@@ -12,7 +12,6 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class ElementActions {
-    private static WebDriver driver;
     private static Wait<WebDriver> wait;
     private static int defaultWaitTime = 10;
 
@@ -25,10 +24,14 @@ public class ElementActions {
     }
 
     public static void assertTrueOnElement(WebDriver driver, By elementLocator, String text){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(defaultWaitTime));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         Assert.assertTrue(driver.findElement(elementLocator).getText().contains(text));
     }
 
     public static void assertEqualOnElement(WebDriver driver, By elementLocator, String text){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(defaultWaitTime));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         Assert.assertEquals(driver.findElement(elementLocator).getText(),text);
     }
 

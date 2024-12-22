@@ -3,7 +3,6 @@ package org.example;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import utilitiles.ElementActions;
 
 public class MainMenuPage {
@@ -13,6 +12,7 @@ public class MainMenuPage {
     private By signUpSignInLink = new By.ByXPath("//a[@href='/login']");
     private By loggedInAsUsertitle = new By.ByXPath("//i[@class='fa fa-user']/following-sibling::b");
     private By deleteAccountButton = new By.ByXPath("//a[@href='/delete_account']");
+    private By logoutButton = new By.ByCssSelector("a[href='/logout']");
 
     public MainMenuPage(WebDriver driver) {
         this.driver = driver;
@@ -36,4 +36,9 @@ public class MainMenuPage {
     public void deleteAccount(){
         ElementActions.click(driver,deleteAccountButton);
     }
+
+    public void clickOnLogOutButton(){
+        ElementActions.click(driver,logoutButton);
+    }
+
 }

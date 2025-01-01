@@ -7,9 +7,9 @@ on:
         description: 'Path to Tests to be Executed'
         default: 'Automation.test.*'
 
-   schedule:
-     # * is a special character in YAML so you have to quote this string
-     - cron: '0 */4 * * *'
+#   schedule:
+#     # * runs every 4 hours
+#     - cron: '0 */4 * * *'
 
    pull_request:
      branches:

@@ -6,24 +6,24 @@ import org.openqa.selenium.WebDriver;
 import utilitiles.ElementActions;
 
 public class SignUpLogInPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public SignUpLogInPage(WebDriver driver) {
         this.driver = driver;
     }
 
     //locators
-    private By newUserSignUpTitle = new By.ByXPath("//div[@class='signup-form']/h2");
-    private By nameField = new By.ByXPath("//input[@data-qa='signup-name']");
-    private By emailField = new By.ByXPath("//input[@data-qa='signup-email']");
-    private By signUpButton = new By.ByXPath("//button[@data-qa='signup-button']");
+    private final By newUserSignUpTitle = new By.ByXPath("//div[@class='signup-form']/h2");
+    private final By nameField = new By.ByXPath("//input[@data-qa='signup-name']");
+    private final By emailField = new By.ByXPath("//input[@data-qa='signup-email']");
+    private final By signUpButton = new By.ByXPath("//button[@data-qa='signup-button']");
 
-    private By logInToYourAccountTitle = new By.ByCssSelector("div[class='login-form'] h2");
-    private By loginEmail = new By.ByCssSelector("input[data-qa='login-email']");
-    private By loginPassword = new By.ByCssSelector("input[data-qa='login-password']");
-    private By loginButton = new By.ByCssSelector("button[data-qa='login-button']");
-    private By invalidCredentialsErrorMsg = new By.ByXPath("//form[@action='/login']/p");
-    private By existingEmailErrorMsg = new By.ByXPath("//input[@value='signup']/following-sibling::p");
+    private final By logInToYourAccountTitle = new By.ByCssSelector("div[class='login-form'] h2");
+    private final By loginEmail = new By.ByCssSelector("input[data-qa='login-email']");
+    private final By loginPassword = new By.ByCssSelector("input[data-qa='login-password']");
+    private final By loginButton = new By.ByCssSelector("button[data-qa='login-button']");
+    private final By invalidCredentialsErrorMsg = new By.ByXPath("//form[@action='/login']/p");
+    private final By existingEmailErrorMsg = new By.ByXPath("//input[@value='signup']/following-sibling::p");
 
     //Assertions
     @Step("Check that New User SignUp Title Is Displayed")

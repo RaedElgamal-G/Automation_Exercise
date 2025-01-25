@@ -1,5 +1,6 @@
 package Automation.test;
 
+import org.apache.commons.io.FileUtils;
 import org.example.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -7,6 +8,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utilitiles.DriverFactory;
 import utilitiles.PropertiesReader;
+
+import java.io.File;
 
 public class TestsSetUp {
     WebDriver driver;
@@ -16,6 +19,7 @@ public class TestsSetUp {
     protected RegistrationPage registeraionpage;
     protected AccountCreatedPage accountcreatedpage;
     protected DeleteAccountPage deleteaccountpage;
+    protected ContactUsPage contactuspage;
 
     @BeforeMethod
     public void before_method_1(){
@@ -26,7 +30,7 @@ public class TestsSetUp {
         registeraionpage = new RegistrationPage(driver);
         accountcreatedpage = new AccountCreatedPage(driver);
         deleteaccountpage = new DeleteAccountPage(driver);
-
+        contactuspage = new ContactUsPage(driver);
     }
 
     @AfterMethod
@@ -39,5 +43,16 @@ public class TestsSetUp {
     public void beforeSuite(){
         PropertiesReader.loadProperties();
 
+        //clean old allure results in (target/allure-results)
+        try {
+            File allureResults = new File("target/allure-results");
+            if (allureResults.exists()) {
+                FileUtils.cleanDirectory(allureResults);
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to clean allure-results directory: " + e.getMessage());
+        }
+
     }
+
 }

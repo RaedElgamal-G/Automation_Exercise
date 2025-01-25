@@ -3,12 +3,11 @@ package org.example;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import utilitiles.BrowserActions;
 import utilitiles.ElementActions;
 
 public class HomePage {
-    private WebDriver driver;
+    private final WebDriver driver;
     private String homePageUrl="https://automationexercise.com/";
 
     public HomePage(WebDriver driver) {
@@ -16,7 +15,7 @@ public class HomePage {
     }
 
     //locators
-    private By homePageTitle = new By.ByXPath("//div[@class='col-sm-12']");
+    private final By homePageTitle = new By.ByXPath("//div[@class='col-sm-12']");
 
     //Assertions
     @Step("Check That Home Page Title Is Displayed")

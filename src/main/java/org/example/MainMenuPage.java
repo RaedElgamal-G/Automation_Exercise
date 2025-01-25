@@ -6,13 +6,15 @@ import org.openqa.selenium.WebDriver;
 import utilitiles.ElementActions;
 
 public class MainMenuPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     //locators
-    private By signUpSignInLink = new By.ByXPath("//a[@href='/login']");
-    private By loggedInAsUsertitle = new By.ByXPath("//i[@class='fa fa-user']/following-sibling::b");
-    private By deleteAccountButton = new By.ByXPath("//a[@href='/delete_account']");
-    private By logoutButton = new By.ByCssSelector("a[href='/logout']");
+    private final By signUpSignInLink = new By.ByXPath("//a[@href='/login']");
+    private final By loggedInAsUsertitle = new By.ByXPath("//i[@class='fa fa-user']/following-sibling::b");
+    private final By deleteAccountButton = new By.ByXPath("//a[@href='/delete_account']");
+    private final By logoutButton = new By.ByCssSelector("a[href='/logout']");
+    private final By contactUsLink = new By.ByXPath("//a[@href='/contact_us']");
+    private final By homePageLink = new By.ByXPath("//i[@class='fa fa-home']");
 
     public MainMenuPage(WebDriver driver) {
         this.driver = driver;
@@ -39,6 +41,13 @@ public class MainMenuPage {
 
     public void clickOnLogOutButton(){
         ElementActions.click(driver,logoutButton);
+    }
+
+    public void clickOnContactUsLink(){
+        ElementActions.click(driver,contactUsLink);
+    }
+    public void clickOnHomeButton () {
+        ElementActions.click(driver, homePageLink);
     }
 
 }
